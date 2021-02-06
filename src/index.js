@@ -8,6 +8,14 @@
 		return data
 	}
 
+	function formatPrice(price) {
+		const newPrice = new window.Intl.NumberFormat("en-en", {
+			style: 'currency',
+			currency: 'USD'
+		}).format(price)
+		return newPrice
+	}
+
 	function createElementHtml(etiqueta) {
 		return document.createElement(etiqueta)
 	}
@@ -27,11 +35,12 @@
 			const title = createElementHtml('h2')
 			const price = createElementHtml('div')
 			const container = createElementHtml('div')
+			const priceFormatUS = formatPrice(element.price)
 			container.className = 'content'
 			addTheTextToElements([
 				{ elem: image, src: `${url}${element.image}` },
 				{ elem: title, value: element.name },
-				{ elem: price, value: element.price}
+				{ elem: price, value: priceFormatUS}
 			])
 			container.append(image, title, price)
 			allTheNodos.push(container)
