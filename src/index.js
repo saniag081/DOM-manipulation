@@ -27,6 +27,7 @@
 			const title = createElementHtml('h2')
 			const price = createElementHtml('div')
 			const container = createElementHtml('div')
+			container.className = 'content'
 			addTheTextToElements([
 				{ elem: image, src: `${url}${element.image}` },
 				{ elem: title, value: element.name },
