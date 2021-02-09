@@ -2,6 +2,12 @@
 	const url = "https://platzi-avo.vercel.app";
 	const appNode = document.querySelector('#app')
 
+	appNode.addEventListener('click', (event) => {
+		if (event.target.nodeName === 'H2') {
+			window.alert('Hello');
+		}
+	})
+
 	async function fetchData() {
 		const request = await fetch(`${url}/api/avo`)
 		const data = await request.json()
@@ -31,19 +37,18 @@
 	function eachElement(arr) {
 		const allTheNodos = []
 		arr.forEach(element => {
-			const image = createElementHtml('img')
-			const title = createElementHtml('h2')
-			const price = createElementHtml('div')
-			const container = createElementHtml('div')
+			const elementImage = createElementHtml('img')
+			const ElementTitle = createElementHtml('h2')
+			const ElementPrice = createElementHtml('div')
+			const ElementContainer = createElementHtml('div')
 			const priceFormatUS = formatPrice(element.price)
-			container.className = 'content'
+			ElementContainer.className = 'content'
 			addTheTextToElements([
-				{ elem: image, src: `${url}${element.image}` },
-				{ elem: title, value: element.name },
-				{ elem: price, value: priceFormatUS}
-			])
-			container.append(image, title, price)
-			allTheNodos.push(container)
+				{ elem: elementImage, src: `${url}${element.image}` },
+				{ elem: ElementTitle, value: element.name },
+				{ elem: ElementPrice, value: priceFormatUS}])
+			ElementContainer.append(elementImage, ElementTitle, ElementPrice)
+			allTheNodos.push(ElementContainer)
 		});
 		appNode.append(...allTheNodos)
 	}
